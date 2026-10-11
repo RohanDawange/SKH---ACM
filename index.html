@@ -1,370 +1,364 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="light">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SKH ACM — Sapkal Knowledge Hub</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
-<style>
-:root{--navy:#14285e;--navy2:#0d1b42;--orange:#f26a1b;--bg:#fff;--bg2:#f5f6fa;--ink:#1b2237;--mute:#5b6479;--line:#e0e4ee;--card:#fff;--paper:#fff7e6;
---disp:'Anton','Impact',sans-serif;--body:'Inter',system-ui,sans-serif;--mono:'Space Mono',monospace;
-box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1426;--bg2:#131b33;--ink:#e8ebf5;--mute:#a3acc4;--line:#26304f;--card:#18213d;--paper:#1d2640}}
-:root[data-theme="dark"]{--bg:#0e1426;--bg2:#131b33;--ink:#e8ebf5;--mute:#a3acc4;--line:#26304f;--card:#18213d;--paper:#1d2640}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px;overflow-x:hidden}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.6}
-a{color:inherit;text-decoration:none}
-img,iframe{max-width:100%}
-.wrap{max-width:1140px;margin:0 auto;padding:0 20px}
-.ticker{background:var(--orange);color:#fff;font-size:13px;font-weight:600;padding:6px 118px 6px 12px;text-align:center;position:relative}
-.theme-toggle{position:absolute;right:12px;top:50%;display:flex;gap:1px;transform:translateY(-50%);padding:1px;background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.45);border-radius:999px}
-.theme-toggle button{border:0;border-radius:999px;background:transparent;color:#fff;padding:1px 5px;font:600 9px var(--body);cursor:pointer;line-height:1.25}
-.theme-toggle button.active{background:#fff;color:var(--navy)}
-.theme-toggle button:focus-visible{outline:2px solid #fff;outline-offset:1px}
-header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.nav{display:flex;align-items:center;justify-content:space-between;width:100%;max-width:none;height:73px;padding-left:30px;padding-right:30px;position:relative}
-.logo{display:flex;align-items:center;gap:4px}
-.logo img{width:60px;height:58px;object-fit:contain;display:block}
-.logo b{font:26px var(--disp);letter-spacing:1px;color:var(--navy)}
-.logo small{display:block;font-size:10px;letter-spacing:1.5px;color:var(--mute);text-transform:uppercase;margin-top:-4px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo b{color:#fff}}
-nav ul{display:flex;gap:4px;list-style:none;margin:0;padding:0}
-nav a{display:block;padding:8px 11px;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid transparent}
-nav a:hover{color:var(--orange);border-color:var(--orange)}
-.btn{display:inline-block;background:var(--orange);color:#fff;padding:11px 22px;border-radius:4px;font-weight:700;font-size:14px;border:2px solid var(--orange);transition:.2s;box-shadow:3px 3px 0 var(--navy)}
-.btn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--navy)}
-.btn.alt{background:transparent;color:#fff;border-color:#fff;box-shadow:3px 3px 0 var(--orange)}
-#burger{display:none;background:none;border:2px solid var(--navy);border-radius:4px;padding:6px 10px;font-size:18px;color:var(--ink);cursor:pointer}
-@media(max-width:960px){#burger{display:block}nav{position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);display:none;z-index:60}nav.open{display:block}nav ul{flex-direction:column;padding:10px 20px}nav a{padding:10px 4px}}
-.hero{background:var(--navy2);color:#fff;padding:70px 0 90px;position:relative;overflow:hidden;isolation:isolate}
-.hero:before{content:"";position:absolute;inset:-18px;background-image:linear-gradient(rgba(13,27,66,.62),rgba(20,40,94,.72)),url("hero-campus-1.jpg");background-size:cover;background-position:center;filter:blur(1px);animation:hero-slideshow 18s infinite;z-index:-2}
-.hero:after{content:"";position:absolute;inset:0;background:rgba(13,27,66,.18);z-index:-1;pointer-events:none}
-@keyframes hero-slideshow{0%,28%{background-image:linear-gradient(rgba(13,27,66,.62),rgba(20,40,94,.72)),url("hero-campus-1.jpg")}33%,61%{background-image:linear-gradient(rgba(13,27,66,.62),rgba(20,40,94,.72)),url("hero-campus-2.jpg")}66%,94%{background-image:linear-gradient(rgba(13,27,66,.62),rgba(20,40,94,.72)),url("hero-campus-3.jpg")}100%{background-image:linear-gradient(rgba(13,27,66,.62),rgba(20,40,94,.72)),url("hero-campus-1.jpg")}}
-.hero .wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
-.tag{display:inline-block;background:var(--orange);color:#fff;font:700 12px var(--mono);padding:4px 10px;letter-spacing:1px;transform:rotate(-2deg)}
-h1,h2,h3.d{font-family:var(--disp);font-weight:400;text-transform:uppercase;letter-spacing:1px;line-height:1.05}
-h1{font-size:clamp(50px,9vw,110px);margin:16px 0}
-h1 span{color:var(--orange);text-shadow:3px 3px 0 rgba(0,0,0,.35)}
-.hero p{max-width:520px;color:#d5dcf2;font-size:17px}
-.hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
-.slot{border:2px dashed var(--orange);background:repeating-linear-gradient(45deg,transparent 0 12px,rgba(242,106,27,.07) 12px 24px);display:grid;place-items:center;text-align:center;color:var(--mute);font:12px var(--mono);padding:14px;min-height:200px;border-radius:4px}
-.hero .slot{aspect-ratio:4/3;color:#ffd7bd;background-color:rgba(255,255,255,.05);transform:rotate(2deg)}
-.px{position:absolute;font:20px var(--mono);color:var(--orange);opacity:.6;animation:fl 4s ease-in-out infinite}
-@keyframes fl{50%{transform:translateY(-10px)}}
-.stats{margin-top:-46px;position:relative;z-index:5}
-.stats .box{background:var(--card);border:1px solid var(--line);border-radius:6px;box-shadow:0 8px 28px rgba(0,0,0,.12);display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
-.stats .box div{padding:20px 8px;border-right:1px solid var(--line)}.stats .box div:last-child{border:0}
-.stats b{font:30px var(--disp);color:var(--orange);display:block}.stats span{font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:1px}
-section{padding:80px 0}section.alt{background:var(--bg2)}
-.kick{font:700 12px var(--mono);letter-spacing:3px;color:var(--orange);text-transform:uppercase}
-h2{font-size:clamp(34px,5vw,54px);margin:6px 0 10px;color:var(--navy)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) h2{color:#fff}}
-.lead{color:var(--mute);max-width:640px;margin:0 0 36px}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
-.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.alt.teachers{background:var(--bg);color:var(--ink)}
-.teachers .teacher-copy{max-width:620px}
-.teachers h2{color:var(--navy)}
-.teachers{padding:52px 0}
-.teacher-photo.slot{display:block;min-height:250px;padding:0;overflow:hidden;max-width:300px;margin:0 auto;background:#f5f0dc;border-style:solid;border-width:1px;box-shadow:0 10px 24px rgba(20,40,94,.14)}
-.teacher-photo img{display:block;width:100%;height:250px;object-fit:cover;object-position:center top}
-.teacher-caption{background:#fff;margin:-1px 30px 18px;padding:12px 10px;text-align:center;position:relative;border-radius:6px;box-shadow:0 3px 10px rgba(0,0,0,.1)}
-.teacher-caption strong{display:block;font-size:18px;color:#14285e}
-.teacher-caption span{font-size:14px;color:#667085}
-.teacher-profile{list-style:none;padding:0;margin:20px 0 0;color:var(--mute)}
-.teacher-profile li{margin:8px 0}
-.teacher-profile li:before{content:"✓";color:var(--orange);font-weight:700;margin-right:10px}
-.teacher-profile strong{color:var(--ink)}
-.teacher-profile a{color:var(--orange)}
-.key-points{background:var(--bg2);color:var(--ink)}
-.key-points h2{margin-bottom:42px}
-.key-points h2{color:var(--navy)}
-.key-points h2 span{color:inherit}
-.points-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.point-card{background:repeating-linear-gradient(45deg,transparent 0 12px,rgba(242,106,27,.07) 12px 24px);border:2px dotted var(--orange);border-radius:4px;min-height:120px;padding:12px 10px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;transition:.2s}
-.point-card:hover{transform:translateY(-4px);box-shadow:5px 5px 0 var(--orange)}
-.point-card .point-icon{font-size:26px;line-height:1;color:var(--orange);margin-bottom:9px}
-.point-card h3{font-size:14px;line-height:1.25;color:var(--ink);margin:0;font-weight:600}
-.act{background:var(--paper);border:2px solid var(--navy);border-radius:4px;padding:20px;box-shadow:5px 5px 0 var(--navy);transition:.2s;position:relative;min-height:170px}
-.act:nth-child(odd){transform:rotate(-.8deg)}.act:nth-child(even){transform:rotate(.8deg)}
-.act:hover{transform:rotate(0) translateY(-5px);box-shadow:8px 8px 0 var(--orange)}
-.act em{font:12px var(--mono);color:var(--orange);font-style:normal}.act h3{font:24px var(--disp);text-transform:uppercase;margin:4px 0;color:var(--navy)}
-.act p{font-size:13px;color:var(--mute);margin:0}.act .ic{position:absolute;right:14px;top:12px;font:700 18px var(--mono);color:var(--orange)}
-.activity-modal{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:20px;background:rgba(8,15,38,.72)}
-.activity-modal.open{display:grid}
-.activity-dialog{position:relative;width:min(560px,100%);max-height:90vh;overflow:auto;background:var(--card);border:3px solid var(--orange);border-radius:6px;padding:30px;box-shadow:8px 8px 0 var(--navy);color:var(--ink)}
-.activity-dialog .modal-kick{font:700 12px var(--mono);letter-spacing:2px;color:var(--orange);text-transform:uppercase}
-.activity-dialog h2{margin:6px 38px 12px 0;color:var(--navy);font-size:clamp(30px,6vw,48px)}
-.activity-dialog h2:focus{outline:2px solid var(--orange);outline-offset:4px}
-.activity-dialog p{color:var(--mute);margin:0 0 14px}
-.activity-dialog ul{color:var(--mute);padding-left:20px;margin:0}
-.modal-close{position:absolute;right:14px;top:10px;border:0;background:transparent;color:var(--ink);font:700 24px var(--mono);cursor:pointer}
-.modal-close:hover{color:var(--orange)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .act h3{color:#fff}}
-.polas{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.pola{background:#fff;padding:12px 12px 40px;box-shadow:0 6px 18px rgba(0,0,0,.2);transition:.25s;position:relative;color:#333}
-.pola:nth-child(4n+1){transform:rotate(-3deg)}.pola:nth-child(4n+2){transform:rotate(2deg)}.pola:nth-child(4n+3){transform:rotate(-1.5deg)}.pola:nth-child(4n){transform:rotate(3deg)}
-.pola:hover{transform:rotate(0) scale(1.05);z-index:3}
-.pola .slot{aspect-ratio:1;min-height:0;background-color:#f2f2f2}
-.pola span{position:absolute;bottom:10px;left:0;right:0;text-align:center;font:12px var(--mono)}
-.board{background:#c9a36b;background-image:radial-gradient(rgba(0,0,0,.12) 1px,transparent 1px);background-size:6px 6px;border:10px solid #8a5f33;border-radius:6px;padding:30px 24px;box-shadow:inset 0 0 30px rgba(0,0,0,.3);max-width:1100px;margin:0 auto}
-.board h3{font:28px var(--disp);color:#fff;text-transform:uppercase;letter-spacing:2px;margin:22px 0 14px;text-align:center;text-shadow:2px 2px 0 rgba(0,0,0,.35)}
-.board h3:first-child{margin-top:0}
-.row{display:flex;flex-wrap:wrap;justify-content:center;gap:26px}
-.row .mem{flex:0 1 238px}
-.mem{position:relative;padding-top:10px;transition:transform .25s,color .25s;color:#222;overflow:hidden;will-change:transform}
-.mem:nth-child(4n+1){transform:rotate(-2.5deg)}.mem:nth-child(4n+2){transform:rotate(1.8deg)}.mem:nth-child(4n+3){transform:rotate(-1deg)}.mem:nth-child(4n){transform:rotate(2.6deg)}
-.mem:hover{transform:rotate(0) translateY(-8px) scale(1.04);z-index:4}
-.mem.in-view{animation:sticky-note-settle .9s ease both}
-@keyframes sticky-note-settle{0%{transform:translateY(12px) rotate(0deg)}45%{transform:translateY(-4px) rotate(-2deg)}75%{transform:translateY(2px) rotate(1.2deg)}100%{transform:translateY(0) rotate(var(--note-rotation,0deg))}}
-.mem:nth-child(4n+1){--note-rotation:-2.5deg}.mem:nth-child(4n+2){--note-rotation:1.8deg}.mem:nth-child(4n+3){--note-rotation:-1deg}.mem:nth-child(4n){--note-rotation:2.6deg}
-.mem:before{content:"";position:absolute;top:0;left:50%;width:16px;height:16px;border-radius:50%;background:var(--orange);box-shadow:2px 3px 3px rgba(0,0,0,.4);transform:translateX(-50%);z-index:2}
-.mem .ph{background:#fff;padding:8px;box-shadow:0 4px 10px rgba(0,0,0,.3)}.mem .ph .slot{min-height:0;aspect-ratio:1;font-size:11px;padding:6px;background-color:#f3f3f3;margin:0 auto;width:100%}
-.mem .ph .slot img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
-.note{margin:-8px 10px 0;padding:12px 10px;box-shadow:0 5px 10px rgba(0,0,0,.25);position:relative;text-align:center}
-.mem:nth-child(4n+1) .note{background:#ffe9a8}.mem:nth-child(4n+2) .note{background:#ffd0dc}.mem:nth-child(4n+3) .note{background:#cdeedd}.mem:nth-child(4n) .note{background:#cfe2ff}
-.note b{font:20px var(--disp);text-transform:uppercase;letter-spacing:.5px;display:block}.note small{font:11px var(--mono);display:block}
-.soc{display:flex;justify-content:center;gap:8px;margin-top:6px}.soc a{font:700 11px var(--mono);border:1.5px solid #222;padding:1px 6px;border-radius:3px;cursor:pointer}.soc a:hover{background:#222;color:#fff}
-.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.card{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--orange);border-radius:4px;padding:24px;transition:.2s}
-.card:hover{box-shadow:0 10px 24px rgba(0,0,0,.12);transform:translateY(-4px)}.card h3{margin:0 0 6px;color:var(--navy);font-size:18px}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .card h3{color:#fff}}
-.card p{margin:0;color:var(--mute);font-size:14px}
-.join{background:var(--navy);color:#fff;border-radius:8px;padding:44px;display:grid;grid-template-columns:1.2fr 1fr;gap:30px;align-items:center;position:relative}
-.join h2{color:#fff}.join ol{padding-left:20px;color:#d5dcf2}.join li{margin-bottom:6px}
-details{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--orange);border-radius:4px;margin-bottom:12px;padding:0 18px}
-summary{cursor:pointer;font-weight:600;padding:16px 0;list-style:none;display:flex;justify-content:space-between;color:var(--navy)}
-summary:after{content:"+";font:700 20px var(--mono);color:var(--orange)}details[open] summary:after{content:"–"}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) summary{color:#fff}}
-details p{margin:0 0 16px;color:var(--mute)}
-footer{background:#181818;color:#d8d8d8;padding:56px 0 20px;border-top:5px solid var(--orange)}
-footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
-footer h4{font:28px var(--disp);letter-spacing:1px;color:#fff;margin:0 0 12px;text-transform:uppercase}
-footer a{display:block;font-size:14px;padding:3px 0}footer a:hover{color:var(--orange)}
-.copy{border-top:1px solid rgba(255,255,255,.15);margin-top:30px;padding-top:16px;font-size:12px;text-align:center;line-height:1.8}
-@media(max-width:1100px){.nav{padding-left:20px;padding-right:20px}.logo b{font-size:23px}nav ul{gap:0}nav a{padding-left:8px;padding-right:8px;font-size:12px}}
-@media(max-width:900px){.hero .wrap,.two,.join,footer .cols{grid-template-columns:1fr}.grid4,.polas,.points-grid{grid-template-columns:repeat(2,1fr)}.row .mem{flex-basis:calc(50% - 13px)}.cards3{grid-template-columns:1fr}.stats .box{grid-template-columns:repeat(2,1fr)}section{padding:56px 0}.join{padding:28px}.hero{padding:58px 0 76px}.hero .wrap{gap:28px}.teacher-photo.slot{order:-1}}
-@media(max-width:600px){.wrap{padding-left:16px;padding-right:16px}.ticker{font-size:11px;line-height:1.35;padding:7px 96px 7px 10px;text-align:left}.theme-toggle{right:8px}.nav{height:64px;padding-left:16px;padding-right:16px}.logo img{width:50px;height:50px}.logo b{font-size:21px}.logo small{font-size:8px;letter-spacing:1px}.hero{padding:44px 0 64px}.hero .wrap{gap:22px}.hero h1{font-size:clamp(52px,17vw,78px)}.hero p{font-size:15px}.hero .cta{gap:10px;margin-top:20px}.btn{padding:10px 16px;font-size:13px}.stats{margin-top:-32px}.stats .box div{padding:15px 5px}.stats b{font-size:24px}.stats span{font-size:10px;letter-spacing:.5px}section{padding:46px 0}h2{font-size:clamp(32px,11vw,46px)}.lead{margin-bottom:26px}.board{padding:22px 12px;border-width:7px}.board h3{font-size:23px;margin-top:18px}.row{gap:20px}.row .mem{flex-basis:100%;max-width:300px}.join{padding:22px 18px}.activity-dialog{padding:24px 18px}.teacher-photo.slot{max-width:280px}.teacher-caption{margin-left:18px;margin-right:18px}.pola{padding-bottom:34px}.pola span{font-size:10px}footer{padding-top:42px}footer h4{font-size:24px}}
-@media(max-width:480px){.grid4,.polas,.points-grid{grid-template-columns:1fr}.logo small{display:none}.hero .slot{min-height:170px}.stats .box{grid-template-columns:repeat(2,1fr)}.stats .box div:nth-child(2){border-right:0}.stats .box div:nth-child(-n+2){border-bottom:1px solid var(--line)}.soc{flex-wrap:wrap}}
-</style>
-</head>
-<body>
-<div class="ticker">Late G.N. Sapkal College of Engineering | Computer Engineering<div class="theme-toggle" aria-label="Color theme"><button type="button" data-theme-choice="light" aria-pressed="true">Light</button><button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button></div></div>
-<header><div class="wrap nav">
-<a href="#home" class="logo"><img src="./asm-sapkal-logo.png" alt="ASM Sapkal Knowledge Hub logo"><span><b>SKH ACM</b><small>Sapkal Knowledge Hub</small></span></a>
-<button id="burger" aria-label="Menu">☰</button>
-<nav id="nav"><ul>
-<li><a href="#home">Home</a></li><li><a href="#about-acm">About ACM</a></li><li><a href="#about-skh">About SKH ACM</a></li><li><a href="#teachers">Teachers</a></li><li><a href="#key-points">Key Points</a></li><li><a href="#activities">Activities</a></li><li><a href="#glimpse">Glimpse</a></li><li><a href="#team">Team</a></li><li><a href="#connect">Connect</a></li><li><a href="#faq">FAQ</a></li><li><a class="btn" href="#join" style="color:#fff;margin-left:6px;padding:8px 16px">Join ACM</a></li>
-</ul></nav></div></header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>SKH ACM — Sapkal Knowledge Hub</title>
+    <meta name="description" content="SKH ACM student chapter at Late G.N. Sapkal College of Engineering, Nashik." />
+    <link rel="icon" type="image/png" href="images/asm-sapkal-logo.png" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="ticker">
+      Late G.N. Sapkal College of Engineering | Computer Engineering
+      <div class="theme-toggle" aria-label="Color theme">
+        <button type="button" data-theme-choice="light" aria-pressed="true">Light</button
+        ><button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+    <header>
+      <div class="wrap nav">
+        <a href="#home" class="logo"
+          ><img src="images/asm-sapkal-logo.png" alt="SKH ACM logo" /><span
+            ><b>SKH ACM</b><small>Sapkal Knowledge Hub</small></span
+          ></a
+        >
+        <button id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">☰</button>
+        <nav id="nav">
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about-acm">About ACM</a></li>
+            <li><a href="#about-skh">About SKH ACM</a></li>
+            <li><a href="#teachers">Teachers</a></li>
+            <li><a href="#key-points">Key Points</a></li>
+            <li><a href="#activities">Activities</a></li>
+            <li><a href="#glimpse">Glimpse</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#connect">Connect</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a class="btn" href="#join" style="color: #fff; margin-left: 6px; padding: 8px 16px">Join ACM</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-<main>
-<section class="hero" id="home" style="padding-top:70px">
-<span class="px" style="top:40px;left:5%">&lt;/&gt;</span><span class="px" style="bottom:70px;left:46%;animation-delay:1s">{ }</span><span class="px" style="top:60px;right:6%;animation-delay:2s">01</span>
-<div class="wrap"><div>
-<span class="tag">SAPKAL KNOWLEDGE HUB</span>
-<h1>SKH <span>ACM</span></h1>
-<p>Code · Create · Connect. [Editable tagline — a short line about what SKH ACM offers students at Sapkal Knowledge Hub.]</p>
-<div class="cta"><a class="btn" href="#join">Join ACM</a><a class="btn alt" href="#about-skh">Know More</a></div></div>
-<div class="slot hero-note">Campus moments · Sapkal Knowledge Hub</div></div></section>
+    <main>
+      <section class="hero" id="home" style="padding-top: 70px">
+        <span class="px" aria-hidden="true" style="top: 40px; left: 5%">&lt;/&gt;</span
+        ><span class="px" aria-hidden="true" style="bottom: 70px; left: 46%; animation-delay: 1s">{ }</span
+        ><span class="px" aria-hidden="true" style="top: 60px; right: 6%; animation-delay: 2s">01</span>
+        <div class="wrap">
+          <div>
+            <span class="tag">SAPKAL KNOWLEDGE HUB</span>
+            <h1>SKH <span>ACM</span></h1>
+            <p>
+              Code · Create · Connect. [Editable tagline — a short line about what SKH ACM offers students at Sapkal
+              Knowledge Hub.]
+            </p>
+            <div class="cta">
+              <a class="btn" href="#join">Join ACM</a><a class="btn alt" href="#about-skh">Know More</a>
+            </div>
+          </div>
+          <div class="slot hero-note">Campus moments · Sapkal Knowledge Hub</div>
+        </div>
+      </section>
 
-<div class="wrap stats"><div class="box">
-<div><b>[ 00 ]</b><span>Members</span></div><div><b>[ 00 ]</b><span>Events</span></div><div><b>[ 00 ]</b><span>Workshops</span></div><div><b>[ 00 ]</b><span>Projects</span></div></div></div>
+      <div class="wrap stats">
+        <div class="box">
+          <div><b>[ 00 ]</b><span>Members</span></div>
+          <div><b>[ 00 ]</b><span>Events</span></div>
+          <div><b>[ 00 ]</b><span>Workshops</span></div>
+          <div><b>[ 00 ]</b><span>Projects</span></div>
+        </div>
+      </div>
 
-<section id="about-acm"><div class="wrap two">
-<div><span class="kick">Who we are</span><h2>About ACM</h2>
-<p>The Association for Computing Machinery (ACM) is an international society for computing professionals, educators and students, focused on advancing computing as a science and a profession.</p>
-<p>[Editable — add any further official ACM description, mission or links you want to include.]</p></div>
-<div class="slot" style="min-height:260px">[ IMAGE ]<br>ACM logo / related photograph</div></div></section>
+      <section id="about-acm">
+        <div class="wrap two">
+          <div>
+            <span class="kick">Who we are</span>
+            <h2>About ACM</h2>
+            <p>
+              The Association for Computing Machinery (ACM) is an international society for computing professionals,
+              educators and students, focused on advancing computing as a science and a profession.
+            </p>
+            <p>[Editable — add any further official ACM description, mission or links you want to include.]</p>
+          </div>
+          <div class="slot" style="min-height: 260px">[ IMAGE ]<br />ACM logo / related photograph</div>
+        </div>
+      </section>
 
-<section class="alt" id="about-skh"><div class="wrap two">
-<div class="slot" style="min-height:300px">[ CAMPUS IMAGE ]<br>Sapkal Knowledge Hub campus photograph</div>
-<div><span class="kick">Our community</span><h2>About SKH ACM</h2>
-<p>[Editable — introduce SKH ACM: when and why it was formed, its vision and what members gain at Sapkal Knowledge Hub.]</p>
-<p>[Editable — mission, faculty coordinator note, and community values.]</p>
-<a class="btn" href="#join">Become a Member</a></div></div></section>
+      <section class="alt" id="about-skh">
+        <div class="wrap two">
+          <div class="slot" style="min-height: 300px">[ CAMPUS IMAGE ]<br />Sapkal Knowledge Hub campus photograph</div>
+          <div>
+            <span class="kick">Our community</span>
+            <h2>About SKH ACM</h2>
+            <p>
+              [Editable — introduce SKH ACM: when and why it was formed, its vision and what members gain at Sapkal
+              Knowledge Hub.]
+            </p>
+            <p>[Editable — mission, faculty coordinator note, and community values.]</p>
+            <a class="btn" href="#join">Become a Member</a>
+          </div>
+        </div>
+      </section>
 
-<section class="alt teachers" id="teachers"><div class="wrap two">
-<div class="teacher-copy"><span class="kick">Faculty Mentor</span><h2>Our HOD Sir</h2>
-<p>Prof. Dr. N. R. Wankhade guides the Computer Engineering department with his experience, knowledge and dedication. His mentorship helps students build strong technical skills and grow with confidence.</p>
-<p>As Professor and Head of Department, he encourages innovation, practical learning and active participation in SKH ACM activities.</p>
-<ul class="teacher-profile">
-<li><strong>Post:</strong> Professor and Head of Department</li>
-<li><strong>Education:</strong> B.E., M.E., Ph.D. (Computer Engineering)</li>
-<li><strong>Experience:</strong> 30 Years</li>
-<li><strong>Email:</strong> <a href="mailto:hodcomp.lgnscoe@sapkalknowledgehub.org">hodcomp.lgnscoe@sapkalknowledgehub.org</a></li>
-<li><strong>Mobile:</strong> <a href="tel:+919326441580">+91-9326441580</a></li>
-</ul></div>
-<div class="teacher-photo slot"><img src="./prof-nr-wankhade.jpg" alt="Prof. Dr. N. R. Wankhade, Professor and Head of Department"><div class="teacher-caption"><strong>Prof. Dr. N. R. Wankhade</strong><span>Professor &amp; Head of Department</span></div></div>
-</div></section>
+      <section class="alt teachers" id="teachers">
+        <div class="wrap two">
+          <div class="teacher-copy">
+            <span class="kick">Faculty Mentor</span>
+            <h2>Our HOD Sir</h2>
+            <p>
+              Prof. Dr. N. R. Wankhade guides the Computer Engineering department with his experience, knowledge and
+              dedication. His mentorship helps students build strong technical skills and grow with confidence.
+            </p>
+            <p>
+              As Professor and Head of Department, he encourages innovation, practical learning and active participation
+              in SKH ACM activities.
+            </p>
+            <ul class="teacher-profile">
+              <li><strong>Post:</strong> Professor and Head of Department</li>
+              <li><strong>Education:</strong> B.E., M.E., Ph.D. (Computer Engineering)</li>
+              <li><strong>Experience:</strong> 30 Years</li>
+              <li>
+                <strong>Email:</strong>
+                <a href="mailto:hodcomp.lgnscoe@sapkalknowledgehub.org">hodcomp.lgnscoe@sapkalknowledgehub.org</a>
+              </li>
+              <li><strong>Mobile:</strong> <a href="tel:+919326441580">+91-9326441580</a></li>
+            </ul>
+          </div>
+          <div class="teacher-photo slot">
+            <img src="images/prof-nr-wankhade.jpg" alt="Prof. Dr. N. R. Wankhade, Professor and Head of Department" />
+            <div class="teacher-caption">
+              <strong>Prof. Dr. N. R. Wankhade</strong><span>Professor &amp; Head of Department</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section class="key-points" id="key-points"><div class="wrap">
-<span class="kick">Our purpose</span><h2>ACM <span>Key Points</span></h2>
-<div class="points-grid">
-<article class="point-card"><div class="point-icon" aria-hidden="true">🎓</div><h3>Promotion of Computing<br>Education</h3></article>
-<article class="point-card"><div class="point-icon" aria-hidden="true">🌐</div><h3>Research and Innovation<br>Support</h3></article>
-<article class="point-card"><div class="point-icon" aria-hidden="true">⌂</div><h3>Community Building</h3></article>
-<article class="point-card"><div class="point-icon" aria-hidden="true">📖</div><h3>Advocacy and Outreach</h3></article>
-</div></div></section>
+      <section class="key-points" id="key-points">
+        <div class="wrap">
+          <span class="kick">Our purpose</span>
+          <h2>ACM <span>Key Points</span></h2>
+          <div class="points-grid">
+            <article class="point-card">
+              <div class="point-icon" aria-hidden="true">🎓</div>
+              <h3>Promotion of Computing<br />Education</h3>
+            </article>
+            <article class="point-card">
+              <div class="point-icon" aria-hidden="true">🌐</div>
+              <h3>Research and Innovation<br />Support</h3>
+            </article>
+            <article class="point-card">
+              <div class="point-icon" aria-hidden="true">⌂</div>
+              <h3>Community Building</h3>
+            </article>
+            <article class="point-card">
+              <div class="point-icon" aria-hidden="true">📖</div>
+              <h3>Advocacy and Outreach</h3>
+            </article>
+          </div>
+        </div>
+      </section>
 
-<section id="activities"><div class="wrap">
-<span class="kick">What we do</span><h2>Activities</h2><p class="lead">[Editable intro — the kinds of events and programmes SKH ACM runs.]</p>
-<div class="grid4">
-<a class="act" href="#activity-modal" data-activity="workshops"><span class="ic">&lt;/&gt;</span><em>01</em><h3>Workshops</h3><p>Hands-on learning sessions</p></a>
-<a class="act" href="#activity-modal" data-activity="hackathons"><span class="ic">⚡</span><em>02</em><h3>Hackathons</h3><p>Build, solve and innovate</p></a>
-<a class="act" href="#activity-modal" data-activity="coding-events"><span class="ic">▦</span><em>03</em><h3>Coding Events</h3><p>Practice through coding</p></a>
-<a class="act" href="#activity-modal" data-activity="community-meets"><span class="ic">☕</span><em>04</em><h3>Community Meets</h3><p>Connect with fellow learners</p></a>
-<a class="act" href="#activity-modal" data-activity="project-showcases"><span class="ic">▲</span><em>05</em><h3>Project Showcases</h3><p>Share ideas and projects</p></a>
-<a class="act" href="#activity-modal" data-activity="tech-talks"><span class="ic">◉</span><em>06</em><h3>Tech Talks</h3><p>Learn from technology experts</p></a>
-</div></div></section>
+      <section id="activities">
+        <div class="wrap">
+          <span class="kick">What we do</span>
+          <h2>Activities</h2>
+          <p class="lead">[Editable intro — the kinds of events and programmes SKH ACM runs.]</p>
+          <div class="grid4">
+            <a class="act" href="#activity-modal" data-activity="workshops"
+              ><span class="ic">&lt;/&gt;</span><em>01</em>
+              <h3>Workshops</h3>
+              <p>Hands-on learning sessions</p></a
+            >
+            <a class="act" href="#activity-modal" data-activity="hackathons"
+              ><span class="ic">⚡</span><em>02</em>
+              <h3>Hackathons</h3>
+              <p>Build, solve and innovate</p></a
+            >
+            <a class="act" href="#activity-modal" data-activity="coding-events"
+              ><span class="ic">▦</span><em>03</em>
+              <h3>Coding Events</h3>
+              <p>Practice through coding</p></a
+            >
+            <a class="act" href="#activity-modal" data-activity="community-meets"
+              ><span class="ic">☕</span><em>04</em>
+              <h3>Community Meets</h3>
+              <p>Connect with fellow learners</p></a
+            >
+            <a class="act" href="#activity-modal" data-activity="project-showcases"
+              ><span class="ic">▲</span><em>05</em>
+              <h3>Project Showcases</h3>
+              <p>Share ideas and projects</p></a
+            >
+            <a class="act" href="#activity-modal" data-activity="tech-talks"
+              ><span class="ic">◉</span><em>06</em>
+              <h3>Tech Talks</h3>
+              <p>Learn from technology experts</p></a
+            >
+          </div>
+        </div>
+      </section>
 
-<section class="alt" id="glimpse"><div class="wrap">
-<span class="kick">Moments</span><h2>Glimpse</h2><p class="lead">[Editable — photographs from ACM events, workshops and campus life.]</p>
-<div class="polas" id="polas"></div></div></section>
+      <section class="alt" id="glimpse">
+        <div class="wrap">
+          <span class="kick">Moments</span>
+          <h2>Glimpse</h2>
+          <p class="lead">Explore moments from SKH ACM events, celebrations, workshops and campus life.</p>
+          <div class="glimpse-gallery" id="glimpse-gallery" aria-label="SKH ACM photo gallery">
+            <div class="glimpse-rail-wrap">
+              <button class="glimpse-control glimpse-prev" type="button" aria-label="Scroll left gallery thumbnails">‹</button>
+              <div class="glimpse-rail" id="glimpse-left-rail" tabindex="0" aria-label="Previous gallery images"></div>
+            </div>
+            <figure class="glimpse-feature">
+              <img id="glimpse-feature-image" src="images/glimpse-01.jpg" alt="SKH ACM event moment" />
+              <figcaption id="glimpse-feature-caption">SKH ACM Event Moments</figcaption>
+            </figure>
+            <div class="glimpse-rail-wrap">
+              <button class="glimpse-control glimpse-next" type="button" aria-label="Scroll right gallery thumbnails">›</button>
+              <div class="glimpse-rail" id="glimpse-right-rail" tabindex="0" aria-label="Next gallery images"></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section id="team"><div class="wrap">
-<span class="kick">The people</span><h2>Meet the Team</h2><p class="lead">[Editable — replace names, photographs, roles and social links for each member.]</p>
-<div class="board" id="board"></div></div></section>
+      <section id="team">
+        <div class="wrap">
+          <span class="kick">The people</span>
+          <h2>Meet the Team</h2>
+          <p class="lead">[Editable — replace names, photographs, roles and social links for each member.]</p>
+          <div class="board" id="board"></div>
+        </div>
+      </section>
 
-<section class="alt" id="connect"><div class="wrap">
-<span class="kick">Reach out</span><h2>Connect With Us</h2><p class="lead">[Editable — add official contact details and links.]</p>
-<div class="cards3">
-<div class="card"><h3>Email</h3><p>[ official-email@example.com ]</p></div>
-<div class="card"><h3>Social Media</h3><p>[ Instagram · LinkedIn · GitHub · YouTube links ]</p></div>
-<div class="card"><h3>Visit Us</h3><p>[ Sapkal Knowledge Hub address / room details ]</p></div>
-</div></div></section>
+      <section class="alt" id="connect">
+        <div class="wrap">
+          <span class="kick">Reach out</span>
+          <h2>Connect With Us</h2>
+          <p class="lead">[Editable — add official contact details and links.]</p>
+          <div class="cards3">
+            <div class="card">
+              <h3>Email</h3>
+              <p>[ official-email@example.com ]</p>
+            </div>
+            <div class="card">
+              <h3>Social Media</h3>
+              <p>[ Instagram · LinkedIn · GitHub · YouTube links ]</p>
+            </div>
+            <div class="card">
+              <h3>Visit Us</h3>
+              <p>[ Sapkal Knowledge Hub address / room details ]</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section id="join"><div class="wrap"><div class="join">
-<div><span class="kick">Be part of it</span><h2>Join ACM</h2>
-<p style="color:#d5dcf2">[Editable — who can join and what members get.]</p>
-<ol><li>[Step 1 — e.g. fill the membership form]</li><li>[Step 2 — e.g. attend an orientation]</li><li>[Step 3 — e.g. start participating]</li></ol>
-<a class="btn" href="#">Registration Link [add URL]</a></div>
-<div class="slot" style="min-height:240px;color:#ffd7bd">[ IMAGE ]<br>Membership / community photograph</div></div></div></section>
+      <section id="join">
+        <div class="wrap">
+          <div class="join">
+            <div>
+              <span class="kick">Be part of it</span>
+              <h2>Join ACM</h2>
+              <p style="color: #d5dcf2">[Editable — who can join and what members get.]</p>
+              <ol>
+                <li>[Step 1 — e.g. fill the membership form]</li>
+                <li>[Step 2 — e.g. attend an orientation]</li>
+                <li>[Step 3 — e.g. start participating]</li>
+              </ol>
+              <a class="btn" href="#">Registration Link [add URL]</a>
+            </div>
+            <div class="slot" style="min-height: 240px; color: #ffd7bd">
+              [ IMAGE ]<br />Membership / community photograph
+            </div>
+          </div>
+        </div>
+      </section>
 
-<section class="alt" id="faq"><div class="wrap" style="max-width:820px">
-<span class="kick">Questions</span><h2>FAQ</h2><br>
-<details><summary>Who can join SKH ACM?</summary><p>[Editable answer]</p></details>
-<details><summary>Is there a membership fee?</summary><p>[Editable answer]</p></details>
-<details><summary>Do I need prior coding experience?</summary><p>[Editable answer]</p></details>
-<details><summary>How can I participate in events?</summary><p>[Editable answer]</p></details>
-<details><summary>How can I become a core team member?</summary><p>[Editable answer]</p></details>
-</div></section>
-</main>
+      <section class="alt" id="faq">
+        <div class="wrap" style="max-width: 820px">
+          <span class="kick">Questions</span>
+          <h2>FAQ</h2>
+          <br />
+          <details>
+            <summary>Who can join SKH ACM?</summary>
+            <p>Any student interested in computer science, technology, programming, or innovation can join SKH ACM. Whether you are a beginner or an experienced developer, you are welcome to learn and grow with us.</p>
+          </details>
+          <details>
+            <summary>Is there a membership fee?</summary>
+            <p>Membership requirements and any applicable fees will be communicated by the SKH ACM team. Students can contact the team for the latest membership details.</p>
+          </details>
+          <details>
+            <summary>Do I need prior coding experience?</summary>
+            <p>No! You don't need prior coding experience. Our activities and learning opportunities are designed to help beginners explore programming and develop their technical skills.</p>
+          </details>
+          <details>
+            <summary>How can I participate in events?</summary>
+            <p>Follow our official announcements and social media updates to stay informed about upcoming workshops, coding competitions, technical sessions, and other events. Register using the link provided for each event.</p>
+          </details>
+          <details>
+            <summary>How can I become a core team member?</summary>
+            <p>Stay active in SKH ACM events, contribute to club activities, and demonstrate teamwork, initiative, and a passion for technology. Core team opportunities and selection details will be announced through official club channels.</p>
+          </details>
+        </div>
+      </section>
+    </main>
 
-<div class="activity-modal" id="activity-modal" role="dialog" aria-modal="true" aria-labelledby="activity-modal-title">
-<div class="activity-dialog">
-<button class="modal-close" type="button" aria-label="Close activity details">×</button>
-<span class="modal-kick">SKH ACM Activity</span>
-<h2 id="activity-modal-title" tabindex="-1"></h2>
-<p id="activity-modal-description"></p>
-<ul id="activity-modal-points"></ul>
-</div>
-</div>
+    <div
+      class="activity-modal"
+      id="activity-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="activity-modal-title"
+    >
+      <div class="activity-dialog">
+        <button class="modal-close" type="button" aria-label="Close activity details">×</button>
+        <span class="modal-kick">SKH ACM Activity</span>
+        <h2 id="activity-modal-title" tabindex="-1"></h2>
+        <p id="activity-modal-description"></p>
+        <ul id="activity-modal-points"></ul>
+      </div>
+    </div>
 
-<footer><div class="wrap">
-<div class="cols">
-<div><h4>SKH ACM</h4><p style="font-size:14px">Late G.N. Sapkal College of Engineering, Kalyani Hills, Anjaneri-Wadholi, Trimbakeshwar Road, Nashik, Maharashtra 422213</p><iframe title="Late G.N. Sapkal College of Engineering location" src="https://www.google.com/maps?q=Late+G.N.+Sapkal+College+of+Engineering,+Kalyani+Hills,+Anjaneri-Wadholi,+Trimbakeshwar+Road,+Nashik,+Maharashtra+422213&output=embed" width="100%" height="180" style="border:0;border-radius:4px;margin-top:12px" loading="lazy" allowfullscreen></iframe></div>
-<div><h4>Quick Links</h4><a href="#about-acm">About ACM</a><a href="#activities">Activities</a><a href="#team">Team</a><a href="#join">Join ACM</a></div>
-<div><h4>Contact</h4><a href="#">[ Email ]</a><a href="#">[ Phone ]</a><a href="#">[ Sapkal Knowledge Hub website link ]</a></div>
-</div>
-<div class="copy">© <span id="yr"></span> SKH ACM · Sapkal Knowledge Hub.<br><span>Designed by Rohan D Dawange</span></div></div></footer>
+    <footer>
+      <div class="wrap">
+        <div class="cols">
+          <div>
+            <h4>SKH ACM</h4>
+            <p style="font-size: 14px">
+              Late G.N. Sapkal College of Engineering, Kalyani Hills, Anjaneri-Wadholi, Trimbakeshwar Road, Nashik,
+              Maharashtra 422213
+            </p>
+            <iframe
+              title="Late G.N. Sapkal College of Engineering location"
+              src="https://www.google.com/maps?q=Late+G.N.+Sapkal+College+of+Engineering,+Kalyani+Hills,+Anjaneri-Wadholi,+Trimbakeshwar+Road,+Nashik,+Maharashtra+422213&output=embed"
+              width="100%"
+              height="180"
+              style="border: 0; border-radius: 4px; margin-top: 12px"
+              loading="lazy"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <a href="#about-acm">About ACM</a><a href="#activities">Activities</a><a href="#team">Team</a
+            ><a href="#join">Join ACM</a>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <a href="#">[ Email ]</a><a href="#">[ Phone ]</a><a href="#">[ Sapkal Knowledge Hub website link ]</a>
+          </div>
+        </div>
+        <div class="copy">
+          © <span id="yr"></span> SKH ACM · Sapkal Knowledge Hub.<br /><span>Designed by Rohan D Dawange</span>
+        </div>
+      </div>
+    </footer>
 
-<script>
-document.getElementById('burger').onclick=function(){document.getElementById('nav').classList.toggle('open')};
-document.querySelectorAll('nav a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('nav').classList.remove('open')})});
-var activityDetails={
-  'workshops':{title:'Workshops',description:'Practical sessions that help students learn new tools, technologies and development skills through guided activities.',points:['Hands-on technical learning','Beginner-friendly guidance','Useful skills for projects and careers']},
-  'hackathons':{title:'Hackathons',description:'Collaborative coding challenges where teams turn creative ideas into working solutions within a focused time period.',points:['Team-based problem solving','Rapid prototyping and innovation','Build solutions for real-world problems']},
-  'coding-events':{title:'Coding Events',description:'Regular coding activities that improve logical thinking, programming confidence and problem-solving ability.',points:['Coding practice and challenges','Improve algorithms and debugging','Learn with peers and share solutions']},
-  'community-meets':{title:'Community Meets',description:'Friendly meetups where ACM members connect, exchange ideas and grow together as a computing community.',points:['Meet fellow students and mentors','Share knowledge and experiences','Create a supportive ACM network']},
-  'project-showcases':{title:'Project Showcases',description:'A platform for students to present their projects, explain their ideas and receive useful feedback.',points:['Present projects with confidence','Showcase creativity and technical work','Get feedback for improvement']},
-  'tech-talks':{title:'Tech Talks',description:'Interactive talks and discussions that introduce students to current technologies, industry trends and career opportunities.',points:['Insights from experts and speakers','Discover current technology trends','Understand computing careers and opportunities']}
-};
-var activityModal=document.getElementById('activity-modal');
-var modalTitle=document.getElementById('activity-modal-title');
-var modalDescription=document.getElementById('activity-modal-description');
-var modalPoints=document.getElementById('activity-modal-points');
-function closeActivityModal(){activityModal.classList.remove('open');document.body.style.overflow='';}
-document.querySelectorAll('[data-activity]').forEach(function(card){
-  card.addEventListener('click',function(event){
-    event.preventDefault();
-    var detail=activityDetails[card.getAttribute('data-activity')];
-    if(!detail)return;
-    modalTitle.textContent=detail.title;
-    modalDescription.textContent=detail.description;
-    modalPoints.innerHTML=detail.points.map(function(point){return '<li>'+point+'</li>'}).join('');
-    activityModal.classList.add('open');
-    document.body.style.overflow='hidden';
-    modalTitle.focus();
-  });
-});
-document.querySelector('.modal-close').addEventListener('click',closeActivityModal);
-activityModal.addEventListener('click',function(event){if(event.target===activityModal)closeActivityModal()});
-document.addEventListener('keydown',function(event){if(event.key==='Escape'&&activityModal.classList.contains('open'))closeActivityModal()});
-var themeButtons=document.querySelectorAll('[data-theme-choice]');
-var savedTheme=localStorage.getItem('skh-theme');
-if(savedTheme==='dark'||savedTheme==='light')document.documentElement.setAttribute('data-theme',savedTheme);
-function setTheme(theme){
-  document.documentElement.setAttribute('data-theme',theme);
-  localStorage.setItem('skh-theme',theme);
-  themeButtons.forEach(function(button){
-    var active=button.getAttribute('data-theme-choice')===theme;
-    button.classList.toggle('active',active);
-    button.setAttribute('aria-pressed',active?'true':'false');
-  });
-}
-themeButtons.forEach(function(button){button.onclick=function(){setTheme(button.getAttribute('data-theme-choice'))}});
-setTheme(document.documentElement.getAttribute('data-theme')==='dark'?'dark':'light');
-document.getElementById('yr').textContent=new Date().getFullYear();
-var P=document.getElementById('polas'),i;
-for(i=1;i<=8;i++)P.insertAdjacentHTML('beforeend','<div class="pola"><div class="slot">[ PHOTO '+i+' ]</div><span>[ Event caption ]</span></div>');
-var T={
-  'Core Team':[
-    {name:'Ms. Chanchal Sarangdhar',role:'Chairperson',email:'sarangdharchanchal@gmail.com',linkedin:'https://www.linkedin.com/in/chanchal-sarangdhar-4a553a399?utm_source=share_via&utm_content=profile&utm_medium=member_android',photo:'chanchal-sarangdhar.png'},
-    {name:'Ms. Harshada Patil',role:'Vice Chairperson',email:'hp891317@gmail.com',linkedin:'https://www.linkedin.com/in/harshada-patil-1841a5381?utm_source=share_via&utm_content=profile&utm_medium=member_android',photo:'harshada-patil.jpg'},
-    {name:'Mr. Aditya Pawar',role:'Secretary'},
-    {name:'Ms. Shruti Gunjal',role:'Treasurer',email:'shrutisgunjal50@gmail.com',linkedin:'https://www.linkedin.com/in/shruti-gunjal-459a92399?utm_source=share_via&utm_content=profile&utm_medium=member_android',photo:'shruti-gunjal.png'},
-    {name:'Mr. Prince Surti',role:'Membership Chair',email:'princesurti6@gmail.com',photo:'prince-surti.jpg'}
-  ],
-  'Technical Team':[
-    {name:'Mr. Adarsh Vamne',role:'Web Developer',email:'vamneadarsh@gmail.com',linkedin:'https://www.linkedin.com/in/adarsh-vamne-075b30384',photo:'adarsh-vamne.jpg'},
-    {name:'Mr. Rohan Dawange',role:'Webmaster',email:'rohandawange999@gmail.com',linkedin:'https://www.linkedin.com/in/rohandawange',photo:'rohan-dawange.jpg'},
-    {name:'Mr. Nivrutti Shelke',role:'Web Development',email:'shelkenivruti683@gmail.com',linkedin:'https://www.linkedin.com/in/nivrutti-shelke-a60777383',photo:'nivrutti-shelke.png'}
-  ],
-  'Design Team':[
-    {name:'Ms. Devyani Patil',role:'Design Advisor',email:'patildevyan1804@gmail.com',photo:'devyani-patil.jpg'},
-    {name:'Mr. Harshal Pawar',role:'Head of Curation',email:'pawarharshal742@gmail.com'},
-    {name:'Ms. Mrunali Ilkar',role:'Head of DM',email:'mrunaliilkar@gmail.com',linkedin:'https://www.linkedin.com/in/mrunali-ilkar-790a91384?utm_source=share_via&utm_content=profile&utm_medium=member_android'},
-    {name:'Mr. Irfan Ansar Sayyad',role:'Head of Graphic Design',email:'irfanansarsayyad2@gmail.com',linkedin:'https://www.linkedin.com/in/irfan-ansar-sayyad-017413409',photo:'irfan-ansar-sayyad.jpg'}
-  ],
-  'Event Team':[
-    {name:'Ms. Dhanashree Chavan',role:'Head of Events',email:'cdhanashree892@gmail.com',photo:'dhanashree-chavan.png'},
-    {name:'Ms. Nandini Patil',role:'Community Advisor',email:'nandini272008patil@gmail.com',linkedin:'https://www.linkedin.com/in/nandini-patil-a5bb6a361?utm_source=share_via&utm_content=profile&utm_medium=member_android',photo:'nandini-patil.jpg'}
-  ]
-};
-var h='';
-for(var k in T){h+='<h3>'+k+'</h3><div class="row">';
-T[k].forEach(function(member){
-  var contacts='';
-  if(member.email)contacts+='<a href="mailto:'+member.email+'" title="Email '+member.name+'" aria-label="Email '+member.name+'">MAIL</a>';
-  if(member.linkedin)contacts+='<a href="'+member.linkedin+'" target="_blank" rel="noopener noreferrer" title="Open LinkedIn profile for '+member.name+'" aria-label="LinkedIn '+member.name+'">IN</a>';
-  var photo=member.photo?'<img src="./'+member.photo+'" alt="'+member.name+'">':'[ PHOTO ]';
-  h+='<div class="mem"><div class="ph"><div class="slot">'+photo+'</div></div><div class="note"><b>'+member.name+'</b><small>'+member.role+'</small><div class="soc">'+contacts+'</div></div></div>'
-});
-h+='</div>'}
-document.getElementById('board').innerHTML=h;
-var memberNotes=document.querySelectorAll('.mem');
-if('IntersectionObserver' in window){
-  var noteObserver=new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      if(entry.isIntersecting){
-        entry.target.classList.remove('in-view');
-        void entry.target.offsetWidth;
-        entry.target.classList.add('in-view');
-      }
-    });
-  },{threshold:.2});
-  memberNotes.forEach(function(note){noteObserver.observe(note)});
-}
-</script>
-</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>
