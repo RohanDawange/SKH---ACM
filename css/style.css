@@ -51,6 +51,7 @@ iframe {
   max-width: 100%;
 }
 .wrap {
+  width: 100%;
   max-width: 1140px;
   margin: 0 auto;
   padding: 0 20px;
@@ -329,6 +330,12 @@ h1 span {
   padding: 14px;
   min-height: 200px;
   border-radius: 4px;
+}
+.slot img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
 }
 .about-skh-logo {
   overflow: hidden;
@@ -1203,10 +1210,17 @@ footer a:hover {
     padding: 28px;
   }
   .hero {
+    min-height: 540px;
     padding: 58px 0 76px;
   }
   .hero .wrap {
     gap: 28px;
+  }
+  .hero .wrap > div {
+    width: min(100%, 760px);
+  }
+  .hero h1 {
+    font-size: clamp(30px, 6.2vw, 52px);
   }
   .teacher-photo.slot {
     order: -1;
@@ -1243,16 +1257,19 @@ footer a:hover {
     letter-spacing: 1px;
   }
   .hero {
+    min-height: 500px;
     padding: 44px 0 64px;
   }
   .hero .wrap {
     gap: 22px;
   }
   .hero .wrap > div {
+    width: 100%;
     transform: translateY(24px);
   }
   .hero h1 {
-    font-size: clamp(26px, 8vw, 42px);
+    font-size: clamp(21px, 7.4vw, 38px);
+    letter-spacing: 0.5px;
   }
   .hero p {
     font-size: 15px;
