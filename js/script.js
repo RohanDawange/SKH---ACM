@@ -139,6 +139,9 @@ var glimpsePhotos = [
   { file: "glimpse-10.jpg", caption: "Campus celebration" },
   { file: "glimpse-11.jpg", caption: "Tech-no-fest group moment" },
   { file: "glimpse-12.jpg", caption: "ACM-inspired campus display" },
+  { file: "glimpse-13.png", caption: "SKH ACM team portrait" },
+  { file: "glimpse-14.png", caption: "SKH ACM team gathering" },
+  { file: "glimpse-15.png", caption: "SKH ACM campus team moment" },
 ];
 var glimpseLeftRail = document.getElementById("glimpse-left-rail");
 var glimpseRightRail = document.getElementById("glimpse-right-rail");
@@ -280,7 +283,14 @@ var T = {
         "https://www.linkedin.com/in/harshada-patil-1841a5381?utm_source=share_via&utm_content=profile&utm_medium=member_android",
       photo: "harshada-patil.jpg",
     },
-    { name: "Mr. Aditya Pawar", role: "Secretary" },
+    {
+      name: "Mr. Aditya Pawar",
+      role: "Secretary",
+      linkedin:
+        "https://www.linkedin.com/in/aaditya-pawar-601323338?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+      github: "https://github.com/aadityapawar09",
+      photo: "aditya-pawar.jpg",
+    },
     {
       name: "Ms. Shruti Gunjal",
       role: "Treasurer",
@@ -326,7 +336,14 @@ var T = {
       email: "patildevyan1804@gmail.com",
       photo: "devyani-patil.jpg",
     },
-    { name: "Mr. Harshal Pawar", role: "Head of Curation", email: "pawarharshal742@gmail.com" },
+    {
+      name: "Mr. Harshal Pawar",
+      role: "Head of Curation",
+      email: "pawarharshal742@gmail.com",
+      linkedin:
+        "https://www.linkedin.com/in/harshal-pawar-095752425?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+      photo: "harshal-pawar.jpg",
+    },
     {
       name: "Ms. Mrunali Ilkar",
       role: "Head of DM",
@@ -383,6 +400,15 @@ for (var k in T) {
         '" aria-label="LinkedIn ' +
         member.name +
         '">IN</a>';
+    if (member.github)
+      contacts +=
+        '<a href="' +
+        member.github +
+        '" target="_blank" rel="noopener noreferrer" title="Open GitHub profile for ' +
+        member.name +
+        '" aria-label="GitHub ' +
+        member.name +
+        '">GH</a>';
     var initials = member.name
       .replace(/^(Mr|Ms|Mrs|Dr)\.\s*/, "")
       .split(" ")
