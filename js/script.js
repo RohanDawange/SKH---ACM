@@ -226,6 +226,19 @@ var glimpsePhotos = [
   { file: "glimpse-13.png", caption: "SKH ACM team portrait" },
   { file: "glimpse-14.png", caption: "SKH ACM team gathering" },
   { file: "glimpse-15.png", caption: "SKH ACM campus team moment" },
+  { file: "glimpse-16.jpg", caption: "SKH ACM inauguration team" },
+  { file: "glimpse-17.jpg", caption: "SKH ACM inauguration ceremony" },
+  { file: "glimpse-18.jpg", caption: "Faculty and students at the ceremony" },
+  { file: "glimpse-19.jpg", caption: "Inauguration ceremony stage" },
+  { file: "glimpse-20.jpg", caption: "Guests and students together" },
+  { file: "glimpse-21.jpg", caption: "Our HOD presentation moment" },
+  { file: "glimpse-22.jpg", caption: "ACM introduction presentation" },
+  { file: "glimpse-23.jpg", caption: "Faculty and guests on stage" },
+  { file: "glimpse-24.jpg", caption: "Chief guests and student leaders" },
+  { file: "glimpse-25.jpg", caption: "Students and faculty audience" },
+  { file: "glimpse-26.jpg", caption: "Inauguration ceremony audience" },
+  { file: "glimpse-27.jpg", caption: "Lamp lighting ceremony" },
+  { file: "glimpse-28.jpg", caption: "Ceremony guests at the dais" },
 ];
 var glimpseLeftRail = document.getElementById("glimpse-left-rail");
 var glimpseRightRail = document.getElementById("glimpse-right-rail");
