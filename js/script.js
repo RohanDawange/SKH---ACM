@@ -54,14 +54,14 @@ var activityDetails = {
       "Get feedback for improvement",
     ],
   },
-  "tech-talks": {
-    title: "Tech Talks",
+  "inauguration-ceremony": {
+    title: "Inauguration Ceremony",
     description:
-      "Interactive talks and discussions that introduce students to current technologies, industry trends and career opportunities.",
+      "A memorable beginning for the SKH ACM student chapter, bringing students, faculty and guests together to celebrate learning, collaboration and innovation.",
     points: [
-      "Insights from experts and speakers",
-      "Discover current technology trends",
-      "Understand computing careers and opportunities",
+      "Welcome and introduction of the SKH ACM chapter",
+      "Inspiring addresses from faculty and student leaders",
+      "Recognition, teamwork and community celebration",
     ],
   },
 };
@@ -69,10 +69,86 @@ var activityModal = document.getElementById("activity-modal");
 var modalTitle = document.getElementById("activity-modal-title");
 var modalDescription = document.getElementById("activity-modal-description");
 var modalPoints = document.getElementById("activity-modal-points");
+var inaugurationCarousel = document.getElementById("inauguration-carousel");
+var carouselTrack = document.getElementById("carousel-track");
+var carouselDots = document.getElementById("carousel-dots");
+var carouselIndex = 0;
+var carouselTimer = null;
+var carouselImages = [
+  "inauguration-01.jpg",
+  "inauguration-02.jpg",
+  "inauguration-03.jpg",
+  "inauguration-04.jpg",
+  "inauguration-05.jpg",
+  "inauguration-06.jpg",
+  "inauguration-07.jpg",
+  "inauguration-08.jpg",
+];
+function renderCarousel() {
+  carouselTrack.style.transform = "translateX(-" + carouselIndex * 100 + "%)";
+  carouselDots.querySelectorAll("button").forEach(function (dot, index) {
+    dot.classList.toggle("active", index === carouselIndex);
+    dot.setAttribute("aria-current", index === carouselIndex ? "true" : "false");
+  });
+}
+function setCarouselSlide(index) {
+  carouselIndex = (index + carouselImages.length) % carouselImages.length;
+  renderCarousel();
+}
+function stopCarouselAutoplay() {
+  if (carouselTimer) {
+    window.clearInterval(carouselTimer);
+    carouselTimer = null;
+  }
+}
+function startCarouselAutoplay() {
+  stopCarouselAutoplay();
+  carouselTimer = window.setInterval(function () {
+    setCarouselSlide(carouselIndex + 1);
+  }, 4000);
+}
+carouselImages.forEach(function (file, index) {
+  var slide = document.createElement("figure");
+  slide.className = "carousel-slide";
+  slide.innerHTML =
+    '<img src="images/' +
+    file +
+    '" alt="SKH ACM inauguration ceremony photo ' +
+    (index + 1) +
+    '" loading="' +
+    (index === 0 ? "eager" : "lazy") +
+    '">';
+  carouselTrack.appendChild(slide);
+  var dot = document.createElement("button");
+  dot.type = "button";
+  dot.className = "carousel-dot";
+  dot.setAttribute("aria-label", "Show inauguration image " + (index + 1));
+  dot.addEventListener("click", function () {
+    setCarouselSlide(index);
+    startCarouselAutoplay();
+  });
+  carouselDots.appendChild(dot);
+});
+document.querySelector(".carousel-prev").addEventListener("click", function () {
+  setCarouselSlide(carouselIndex - 1);
+  startCarouselAutoplay();
+});
+document.querySelector(".carousel-next").addEventListener("click", function () {
+  setCarouselSlide(carouselIndex + 1);
+  startCarouselAutoplay();
+});
+inaugurationCarousel.addEventListener("mouseenter", stopCarouselAutoplay);
+inaugurationCarousel.addEventListener("mouseleave", startCarouselAutoplay);
+inaugurationCarousel.addEventListener("focusin", stopCarouselAutoplay);
+inaugurationCarousel.addEventListener("focusout", function (event) {
+  if (!inaugurationCarousel.contains(event.relatedTarget)) startCarouselAutoplay();
+});
+renderCarousel();
 var lastCard = null;
 function closeActivityModal() {
   activityModal.classList.remove("open");
   document.body.style.overflow = "";
+  stopCarouselAutoplay();
   if (lastCard) lastCard.focus();
 }
 document.querySelectorAll("[data-activity]").forEach(function (card) {
@@ -87,6 +163,14 @@ document.querySelectorAll("[data-activity]").forEach(function (card) {
         return "<li>" + point + "</li>";
       })
       .join("");
+    var isInauguration = card.getAttribute("data-activity") === "inauguration-ceremony";
+    inaugurationCarousel.hidden = !isInauguration;
+    if (isInauguration) {
+      setCarouselSlide(0);
+      startCarouselAutoplay();
+    } else {
+      stopCarouselAutoplay();
+    }
     lastCard = card;
     activityModal.classList.add("open");
     document.body.style.overflow = "hidden";
