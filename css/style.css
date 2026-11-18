@@ -531,6 +531,69 @@ h2 {
 .teacher-profile a {
   color: var(--orange);
 }
+.certificate-section {
+  background: var(--bg2);
+}
+.certificate-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 48px;
+  align-items: center;
+}
+.certificate-copy {
+  max-width: 560px;
+}
+.certificate-copy h2 {
+  max-width: 460px;
+}
+.certificate-copy h2 span {
+  color: var(--orange);
+}
+.certificate-copy p:not(.lead) {
+  color: var(--mute);
+  margin: 0 0 22px;
+}
+.certificate-meta {
+  display: grid;
+  gap: 10px;
+  border-left: 3px solid var(--orange);
+  padding-left: 16px;
+  color: var(--mute);
+  font-size: 13px;
+}
+.certificate-meta span {
+  display: block;
+}
+.certificate-meta strong {
+  display: block;
+  color: var(--head);
+  font-size: 11px;
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+.certificate-card {
+  margin: 0;
+  padding: 14px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 8px 8px 0 var(--orange);
+}
+.certificate-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+.certificate-card figcaption {
+  color: var(--mute);
+  font: 11px var(--mono);
+  letter-spacing: 0.5px;
+  padding: 10px 2px 0;
+  text-align: center;
+  text-transform: uppercase;
+}
 .key-points {
   background: var(--bg2);
   color: var(--ink);
@@ -1274,6 +1337,17 @@ footer a:hover {
   .cards3 {
     grid-template-columns: 1fr;
   }
+  .certificate-layout {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .certificate-copy {
+    max-width: none;
+  }
+  .certificate-card {
+    max-width: 760px;
+    margin: 0 auto;
+  }
   .stats .box {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1416,6 +1490,12 @@ footer a:hover {
   .teacher-caption {
     margin-left: 18px;
     margin-right: 18px;
+  }
+  .certificate-section {
+    padding: 46px 0;
+  }
+  .certificate-card {
+    box-shadow: 5px 5px 0 var(--orange);
   }
   .pola {
     padding-bottom: 34px;
